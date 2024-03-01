@@ -38,6 +38,8 @@
 
 #include <libMXF++/MXFVersion.h>
 
+#include <string>
+
 using namespace std;
 
 
