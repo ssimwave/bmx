@@ -669,6 +669,8 @@ fail:
         free(newEntry);
     }
     mxf_clear_list(&rip->entries);
+    mxf_log_error("Failed to read RIP entry\n");
+
     return 0;
 }
 

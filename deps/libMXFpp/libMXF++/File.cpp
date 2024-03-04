@@ -285,8 +285,8 @@ bool File::readHeaderPartition()
 
     try
     {
-        seek(mxf_get_runin_len(_cFile), SEEK_SET);
-        if (!mxf_read_header_pp_kl(_cFile, &key, &llen, &len))
+        seek(0, SEEK_SET);
+        if (!mxf_read_header_pp_kl_with_runin(_cFile, &key, &llen, &len))
             return false;
 
         _partitions.push_back(Partition::read(this, &key, len));
@@ -403,6 +403,7 @@ bool File::readPartitions()
                 throw;
             }
         } else {
+            mxf_log_warn("File has missing or invalid Random Index Pack (RIP)\n");
 
             // start from footer partition and work back to the header partition
 
