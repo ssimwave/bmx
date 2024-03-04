@@ -457,6 +457,8 @@ int mxf_read_partition(MXFFile *mxfFile, const mxfKey *key, uint64_t len, MXFPar
     CHK_OFAIL(mxf_read_uint32(mxfFile, &newPartition->bodySID));
     CHK_OFAIL(mxf_read_ul(mxfFile, &newPartition->operationalPattern));
 
+    newPartition->thisPartition += mxfFile->runinLen;
+
     CHK_OFAIL(mxf_read_batch_header(mxfFile, &numLabels, &labelLen));
     CHK_OFAIL(numLabels == 0 || labelLen == 16);
     expectedLen = 88 + (uint64_t)numLabels * labelLen;
