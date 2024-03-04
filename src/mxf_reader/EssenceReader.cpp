@@ -301,6 +301,9 @@ EssenceReader::EssenceReader(MXFFileReader *file_reader, bool file_is_complete, 
             mFileReader->mWrappingType = mFileReader->mGuessedWrappingType;
 
         if (mIndexTableHelper.IsComplete()) {
+            if (mIndexTableHelper.GetEditRate() != mFileReader->GetEditRate()) {
+                delete mFrameMetadataReader;
+            }
             BMX_CHECK(mIndexTableHelper.GetEditRate() == mFileReader->GetEditRate());
             mIndexTableHelper.SetEssenceDataSize(mEssenceChunkHelper.GetEssenceDataSize());
         } else {
@@ -344,6 +347,7 @@ EssenceReader::EssenceReader(MXFFileReader *file_reader, bool file_is_complete, 
         int64_t last_unit_offset, last_unit_size;
         mIndexTableHelper.GetEditUnit(mIndexTableHelper.GetDuration() - 1, &last_unit_offset, &last_unit_size);
         if (mEssenceChunkHelper.GetEssenceDataSize() < last_unit_offset + last_unit_size) {
+            delete mFrameMetadataReader;
             BMX_EXCEPTION(("Last edit unit (offset %" PRId64 ", size %" PRId64 ") not available in "
                                 "essence container (size %" PRId64 ")",
                           last_unit_offset, last_unit_size, mEssenceChunkHelper.GetEssenceDataSize()));
