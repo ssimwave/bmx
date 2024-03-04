@@ -126,6 +126,7 @@ public:
 
     std::string GetMaterialPackageName() const       { return mMaterialPackageName; }
     mxfUMID GetMaterialPackageUID() const            { return mMaterialPackageUID; }
+    std::string GetFileSourcePackageName() const     { return mFileSourcePackageName; }
     std::string GetPhysicalSourcePackageName() const { return mPhysicalSourcePackageName; }
 
     mxfpp::MaterialPackage* GetMaterialPackage() const { return mMaterialPackage; }
@@ -164,6 +165,7 @@ protected:
 
     std::string mMaterialPackageName;
     mxfUMID mMaterialPackageUID;
+    std::string mFileSourcePackageName;
     std::string mPhysicalSourcePackageName;
     mxfpp::MaterialPackage *mMaterialPackage;
 

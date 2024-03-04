@@ -1678,7 +1678,11 @@ void MXFFileReader::GetStartTimecodes(Preface *preface, Track *infile_mp_track)
                                  &ref_package, &ref_track, &ref_offset))
         {
             if (GetStartTimecode(ref_package, ref_track, ref_offset, &start_timecode))
+            {
                 mFileSourceStartTimecode = new Timecode(start_timecode);
+                if (ref_package->haveName())
+                    mFileSourcePackageName = ref_package->getName();
+            }
 
             if (GetReferencedPackage(preface, ref_track, ref_offset, PHYSICAL_SOURCE_PACKAGE_TYPE,
                                      &ref_package, &ref_track, &ref_offset))
