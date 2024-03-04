@@ -118,6 +118,10 @@ void HeaderMetadata::registerObjectFactory(const mxfKey *key, AbsMetadataSetFact
     if (result.second == false)
     {
         // replace existing factory with new one
+        if (result.first->second) {
+            delete result.first->second;
+            result.first->second = nullptr;
+        }
         _objectFactory.erase(result.first);
         _objectFactory.insert(pair<mxfKey, AbsMetadataSetFactory*>(*key, factory));
     }
