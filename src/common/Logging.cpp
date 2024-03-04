@@ -147,7 +147,19 @@ static void file_log(LogLevel level, const char* format, ...)
     va_end(p_arg);
 }
 
+static void custom_vlog(LogLevel level, const char *format, va_list p_arg)
+{
+    vlog2(level, 0, format, p_arg);
+}
 
+static void custom_log(LogLevel level, const char* format, ...)
+{
+    va_list p_arg;
+
+    va_start(p_arg, format);
+    vlog2(level, 0, format, p_arg);
+    va_end(p_arg);
+}
 
 bool bmx::open_log_file(string filename)
 {
@@ -175,6 +187,15 @@ void bmx::close_log_file()
     vlog2 = stdio_vlog2;
     vlog = stdio_vlog;
     log = stdio_log;
+}
+
+
+void bmx::set_custom_log(vlog2_func logfunc)
+{
+    close_log_file();
+    vlog2 = logfunc;
+    vlog = custom_vlog;
+    log = custom_log;
 }
 
 void bmx::set_stdout_log_file()

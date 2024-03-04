@@ -107,7 +107,14 @@ static void log_to_file(MXFLogLevel level, const char *format, ...)
     va_end(p_arg);
 }
 
+static void log_to_custom(MXFLogLevel level, const char* format, ...)
+{
+    va_list p_arg;
 
+    va_start(p_arg, format);
+    mxf_vlog(level, format, p_arg);
+    va_end(p_arg);
+}
 
 void mxf_vlog_default(MXFLogLevel level, const char *format, va_list p_arg)
 {
@@ -164,6 +171,28 @@ void mxf_log_file_close(void)
     }
 }
 
+void mxf_set_custom_log(mxf_vlog_func logfunc)
+{
+    mxf_log_file_close();
+    mxf_vlog = logfunc;
+    mxf_log = log_to_custom;
+}
+
+void mxf_set_stdout_log_file()
+{
+    mxf_log_file_close();
+    g_mxfFileLog = stdout;
+    mxf_vlog = vlog_to_file;
+    mxf_log = log_to_file;
+}
+
+void mxf_set_stderr_log_file()
+{
+    mxf_log_file_close();
+    g_mxfFileLog = stderr;
+    mxf_vlog = vlog_to_file;
+    mxf_log = log_to_file;
+}
 
 void mxf_log_debug(const char *format, ...)
 {

@@ -37,7 +37,6 @@
 
 #include <stdarg.h>
 
-
 #ifdef __cplusplus
 extern "C"
 {
@@ -73,6 +72,9 @@ int mxf_log_file_open(const char *filename);
 void mxf_log_file_flush(void);
 void mxf_log_file_close(void);
 
+void mxf_set_custom_log(mxf_vlog_func logfunc);
+void mxf_set_stdout_log_file();
+void mxf_set_stderr_log_file();
 
 /* log level in function name */
 void mxf_log_debug(const char *format, ...);
