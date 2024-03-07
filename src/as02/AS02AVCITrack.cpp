@@ -52,7 +52,7 @@ AS02AVCITrack::AS02AVCITrack(AS02Clip *clip, uint32_t track_index, EssenceType e
                              string rel_uri)
 : AS02PictureTrack(clip, track_index, essence_type, file, rel_uri)
 {
-    mAVCIDescriptorHelper = dynamic_cast<AVCIMXFDescriptorHelper*>(mDescriptorHelper);
+    mAVCIDescriptorHelper = dynamic_cast<AVCIMXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mAVCIDescriptorHelper);
     mWriterHelper.SetDescriptorHelper(mAVCIDescriptorHelper);
 

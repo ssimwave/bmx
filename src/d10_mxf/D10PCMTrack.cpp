@@ -53,7 +53,7 @@ D10PCMTrack::D10PCMTrack(D10File *file, uint32_t track_index, mxfRational frame_
 
     mIsPicture = false;
 
-    mSoundDescriptorHelper = dynamic_cast<SoundMXFDescriptorHelper*>(mDescriptorHelper);
+    mSoundDescriptorHelper = dynamic_cast<SoundMXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mSoundDescriptorHelper);
 
     mSoundDescriptorHelper->SetSamplingRate(SAMPLING_RATE_48K);

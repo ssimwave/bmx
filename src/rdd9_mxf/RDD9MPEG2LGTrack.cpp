@@ -51,7 +51,7 @@ RDD9MPEG2LGTrack::RDD9MPEG2LGTrack(RDD9File *file, uint32_t track_index, uint32_
                                    Rational frame_rate, EssenceType essence_type)
 : RDD9Track(file, track_index, track_id, track_type_number, frame_rate, essence_type)
 {
-    mPictureDescriptorHelper = dynamic_cast<PictureMXFDescriptorHelper*>(mDescriptorHelper);
+    mPictureDescriptorHelper = dynamic_cast<PictureMXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mPictureDescriptorHelper);
     mValidator = 0;
 

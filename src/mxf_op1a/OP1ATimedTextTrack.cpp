@@ -63,7 +63,7 @@ OP1ATimedTextTrack::OP1ATimedTextTrack(OP1AFile *file, uint32_t track_index, uin
     mTrackNumber = MXF_EE_TRACKNUM(TimedText);
     mEssenceElementKey = MXF_EE_K(TimedText);
 
-    mTimedTextDescriptorHelper = dynamic_cast<TimedTextMXFDescriptorHelper*>(mDescriptorHelper);
+    mTimedTextDescriptorHelper = dynamic_cast<TimedTextMXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mTimedTextDescriptorHelper);
 
     mFileSourcePackage = 0;

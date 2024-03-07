@@ -47,7 +47,7 @@ using namespace mxfpp;
 AvidPictureTrack::AvidPictureTrack(AvidClip *clip, uint32_t track_index, EssenceType essence_type, File *file)
 : AvidTrack(clip, track_index, essence_type, file)
 {
-    mPictureDescriptorHelper = dynamic_cast<PictureMXFDescriptorHelper*>(mDescriptorHelper);
+    mPictureDescriptorHelper = dynamic_cast<PictureMXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mPictureDescriptorHelper);
 
     mPictureDescriptorHelper->SetFrameWrapped(false);

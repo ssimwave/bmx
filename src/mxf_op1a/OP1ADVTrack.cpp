@@ -51,7 +51,7 @@ OP1ADVTrack::OP1ADVTrack(OP1AFile *file, uint32_t track_index, uint32_t track_id
                          mxfRational frame_rate, EssenceType essence_type)
 : OP1APictureTrack(file, track_index, track_id, track_type_number, frame_rate, essence_type)
 {
-    mDVDescriptorHelper = dynamic_cast<DVMXFDescriptorHelper*>(mDescriptorHelper);
+    mDVDescriptorHelper = dynamic_cast<DVMXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mDVDescriptorHelper);
 
     mDVDescriptorHelper->SetComponentDepth(8);

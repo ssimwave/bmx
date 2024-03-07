@@ -56,7 +56,7 @@ static const uint8_t AUDIO_ELEMENT_LLEN = 8;
 AS02PCMTrack::AS02PCMTrack(AS02Clip *clip, uint32_t track_index, mxfpp::File *file, string rel_uri)
 : AS02Track(clip, track_index, WAVE_PCM, file, rel_uri)
 {
-    mWaveDescriptorHelper = dynamic_cast<WaveMXFDescriptorHelper*>(mDescriptorHelper);
+    mWaveDescriptorHelper = dynamic_cast<WaveMXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mWaveDescriptorHelper);
     mEssenceDataStartPos = 0;
 

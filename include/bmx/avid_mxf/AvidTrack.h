@@ -33,6 +33,7 @@
 #define BMX_AVID_TRACK_H_
 
 #include <string>
+#include <memory>
 
 #include <libMXF++/MXF.h>
 #include <libMXF++/extensions/TaggedValue.h>
@@ -65,7 +66,7 @@ public:
     virtual bool SupportOutputStartOffset() { return false; }
     void SetOutputStartOffset(int64_t offset);
 
-    MXFDescriptorHelper* GetMXFDescriptorHelper() { return mDescriptorHelper; }
+    MXFDescriptorHelper* GetMXFDescriptorHelper() { return mDescriptorHelper.get(); }
 
 public:
     virtual void PrepareHeaderMetadata();
@@ -137,7 +138,7 @@ protected:
     uint32_t mBodySID;
 
     EssenceType mEssenceType;
-    MXFDescriptorHelper *mDescriptorHelper;
+    std::unique_ptr<MXFDescriptorHelper> mDescriptorHelper;
 
     mxfUMID mFileSourcePackageUID;
     uint32_t mMaterialTrackId;

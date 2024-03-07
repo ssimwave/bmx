@@ -55,7 +55,7 @@ using namespace mxfpp;
 AvidMJPEGTrack::AvidMJPEGTrack(AvidClip *clip, uint32_t track_index, EssenceType essence_type, File *file)
 : AvidPictureTrack(clip, track_index, essence_type, file)
 {
-    mMJPEGDescriptorHelper = dynamic_cast<MJPEGMXFDescriptorHelper*>(mDescriptorHelper);
+    mMJPEGDescriptorHelper = dynamic_cast<MJPEGMXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mMJPEGDescriptorHelper);
 
     mTrackNumber = MXF_AVID_MJPEG_PICT_TRACK_NUM;

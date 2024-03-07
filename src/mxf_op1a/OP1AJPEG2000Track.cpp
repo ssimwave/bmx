@@ -51,7 +51,7 @@ OP1AJPEG2000Track::OP1AJPEG2000Track(OP1AFile *file, uint32_t track_index, uint3
                                      mxfRational frame_rate, EssenceType essence_type)
 : OP1APictureTrack(file, track_index, track_id, track_type_number, frame_rate, essence_type)
 {
-    mWriterHelper.SetDescriptorHelper(dynamic_cast<JPEG2000MXFDescriptorHelper*>(mDescriptorHelper));
+    mWriterHelper.SetDescriptorHelper(dynamic_cast<JPEG2000MXFDescriptorHelper*>(GetMXFDescriptorHelper()));
 
     mTrackNumber = MXF_JPEG2000_TRACK_NUM(0x01, MXF_JPEG2000_NOT_CLIP_WRAPPED_EE_TYPE, 0x00);
     mEssenceElementKey = VIDEO_ELEMENT_KEY;

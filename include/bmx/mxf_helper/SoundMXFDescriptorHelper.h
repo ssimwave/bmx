@@ -32,6 +32,7 @@
 #ifndef BMX_SOUND_MXF_DESCRIPTOR_HELPER_H_
 #define BMX_SOUND_MXF_DESCRIPTOR_HELPER_H_
 
+#include <memory>
 
 #include <bmx/mxf_helper/MXFDescriptorHelper.h>
 #include <bmx/BMXTypes.h>
@@ -46,11 +47,11 @@ class SoundMXFDescriptorHelper : public MXFDescriptorHelper
 {
 public:
     static EssenceType IsSupported(mxfpp::FileDescriptor *file_descriptor, mxfUL alternative_ec_label);
-    static SoundMXFDescriptorHelper* Create(mxfpp::FileDescriptor *file_descriptor, uint16_t mxf_version,
-                                            mxfUL alternative_ec_label);
+    static std::unique_ptr<SoundMXFDescriptorHelper> Create(mxfpp::FileDescriptor *file_descriptor,
+                                                            uint16_t mxf_version, mxfUL alternative_ec_label);
 
     static bool IsSupported(EssenceType essence_type);
-    static MXFDescriptorHelper* Create(EssenceType essence_type);
+    static std::unique_ptr<MXFDescriptorHelper> Create(EssenceType essence_type);
 
 public:
     SoundMXFDescriptorHelper();

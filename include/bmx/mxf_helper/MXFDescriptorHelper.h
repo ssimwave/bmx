@@ -32,11 +32,11 @@
 #ifndef BMX_MXF_DESCRIPTOR_HELPER_H_
 #define BMX_MXF_DESCRIPTOR_HELPER_H_
 
+#include <memory>
 
 #include <libMXF++/MXF.h>
 
 #include <bmx/EssenceType.h>
-
 
 #define MXFDESC_SMPTE_377_2004_FLAVOUR        0x0001
 #define MXFDESC_SMPTE_377_1_FLAVOUR           0x0002
@@ -56,9 +56,9 @@ class MXFDescriptorHelper
 {
 public:
     static EssenceType IsSupported(mxfpp::FileDescriptor *file_descriptor, mxfUL alternative_ec_label);
-    static MXFDescriptorHelper* Create(mxfpp::FileDescriptor *file_descriptor, uint16_t mxf_version,
-                                       mxfUL alternative_ec_label);
-    static MXFDescriptorHelper* Create(EssenceType essence_type);
+    static std::unique_ptr<MXFDescriptorHelper> Create(mxfpp::FileDescriptor *file_descriptor, uint16_t mxf_version,
+                                                       mxfUL alternative_ec_label);
+    static std::unique_ptr<MXFDescriptorHelper> Create(EssenceType essence_type);
 
 protected:
    static bool CompareECULs(mxfUL ec_label_a, mxfUL alternative_ec_label_a, mxfUL ec_label_b);

@@ -52,7 +52,7 @@ OP1AD10Track::OP1AD10Track(OP1AFile *file, uint32_t track_index, uint32_t track_
                            mxfRational frame_rate, EssenceType essence_type)
 : OP1APictureTrack(file, track_index, track_id, track_type_number, frame_rate, essence_type)
 {
-    mD10DescriptorHelper = dynamic_cast<D10MXFDescriptorHelper*>(mDescriptorHelper);
+    mD10DescriptorHelper = dynamic_cast<D10MXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mD10DescriptorHelper);
 
     mWriterHelper.SetOutputMaxSampleSize(true);

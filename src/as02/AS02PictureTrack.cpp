@@ -47,7 +47,7 @@ AS02PictureTrack::AS02PictureTrack(AS02Clip *clip, uint32_t track_index, Essence
                                    string rel_uri)
 : AS02Track(clip, track_index, essence_type, file, rel_uri)
 {
-    mPictureDescriptorHelper = dynamic_cast<PictureMXFDescriptorHelper*>(mDescriptorHelper);
+    mPictureDescriptorHelper = dynamic_cast<PictureMXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mPictureDescriptorHelper);
 
     mPartitionInterval = 0;

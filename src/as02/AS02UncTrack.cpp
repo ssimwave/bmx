@@ -53,7 +53,7 @@ AS02UncTrack::AS02UncTrack(AS02Clip *clip, uint32_t track_index, EssenceType ess
                            string rel_uri)
 : AS02PictureTrack(clip, track_index, essence_type, file, rel_uri)
 {
-    mUncDescriptorHelper = dynamic_cast<UncCDCIMXFDescriptorHelper*>(mDescriptorHelper);
+    mUncDescriptorHelper = dynamic_cast<UncCDCIMXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mUncDescriptorHelper);
 
     mUncDescriptorHelper->SetComponentDepth(8);

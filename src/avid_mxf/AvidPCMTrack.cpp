@@ -53,7 +53,7 @@ static const mxfKey AUDIO_ELEMENT_KEY = MXF_AES3BWF_EE_K(0x01, MXF_BWF_CLIP_WRAP
 AvidPCMTrack::AvidPCMTrack(AvidClip *clip, uint32_t track_index, EssenceType essence_type, File *file)
 : AvidTrack(clip, track_index, essence_type, file)
 {
-    mWaveDescriptorHelper = dynamic_cast<WaveMXFDescriptorHelper*>(mDescriptorHelper);
+    mWaveDescriptorHelper = dynamic_cast<WaveMXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mWaveDescriptorHelper);
 
     mWaveDescriptorHelper->SetFrameWrapped(false);

@@ -32,12 +32,11 @@
 #ifndef BMX_AS02_TRACK_H_
 #define BMX_AS02_TRACK_H_
 
+#include <memory>
 
 #include <bmx/as02/AS02Bundle.h>
 #include <bmx/mxf_helper/MXFDescriptorHelper.h>
 #include <bmx/Checksum.h>
-
-
 
 namespace bmx
 {
@@ -67,7 +66,7 @@ public:
     void SetOutputStartOffset(int64_t offset);
     void SetOutputEndOffset(int64_t offset);
 
-    MXFDescriptorHelper* GetMXFDescriptorHelper() { return mDescriptorHelper; }
+    MXFDescriptorHelper* GetMXFDescriptorHelper() { return mDescriptorHelper.get(); }
 
 public:
     virtual void PrepareHeaderMetadata();
@@ -127,7 +126,7 @@ protected:
     mxfKey mEssenceElementKey;
 
     EssenceType mEssenceType;
-    MXFDescriptorHelper *mDescriptorHelper;
+    std::unique_ptr<MXFDescriptorHelper> mDescriptorHelper;
 
     uint32_t mSampleSize;
 

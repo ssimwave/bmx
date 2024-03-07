@@ -108,36 +108,37 @@ EssenceType PictureMXFDescriptorHelper::IsSupported(FileDescriptor *file_descrip
     return PICTURE_ESSENCE;
 }
 
-PictureMXFDescriptorHelper* PictureMXFDescriptorHelper::Create(FileDescriptor *file_descriptor, uint16_t mxf_version,
-                                                               mxfUL alternative_ec_label)
+std::unique_ptr<PictureMXFDescriptorHelper> PictureMXFDescriptorHelper::Create(FileDescriptor *file_descriptor,
+                                                                               uint16_t mxf_version,
+                                                                               mxfUL alternative_ec_label)
 {
-    PictureMXFDescriptorHelper *helper;
+    std::unique_ptr<PictureMXFDescriptorHelper> helper;
     if (D10MXFDescriptorHelper::IsSupported(file_descriptor, alternative_ec_label))
-        helper = new D10MXFDescriptorHelper();
+        helper = std::make_unique<D10MXFDescriptorHelper>();
     else if (DVMXFDescriptorHelper::IsSupported(file_descriptor, alternative_ec_label))
-        helper = new DVMXFDescriptorHelper();
+        helper = std::make_unique<DVMXFDescriptorHelper>();
     else if (AVCIMXFDescriptorHelper::IsSupported(file_descriptor, alternative_ec_label))
-        helper = new AVCIMXFDescriptorHelper();
+        helper = std::make_unique<AVCIMXFDescriptorHelper>();
     else if (AVCMXFDescriptorHelper::IsSupported(file_descriptor, alternative_ec_label))
-        helper = new AVCMXFDescriptorHelper();
+        helper = std::make_unique<AVCMXFDescriptorHelper>();
     else if (UncCDCIMXFDescriptorHelper::IsSupported(file_descriptor, alternative_ec_label))
-        helper = new UncCDCIMXFDescriptorHelper();
+        helper = std::make_unique<UncCDCIMXFDescriptorHelper>();
     else if (UncRGBAMXFDescriptorHelper::IsSupported(file_descriptor, alternative_ec_label))
-        helper = new UncRGBAMXFDescriptorHelper();
+        helper = std::make_unique<UncRGBAMXFDescriptorHelper>();
     else if (MPEG2LGMXFDescriptorHelper::IsSupported(file_descriptor, alternative_ec_label))
-        helper = new MPEG2LGMXFDescriptorHelper();
+        helper = std::make_unique<MPEG2LGMXFDescriptorHelper>();
     else if (RDD36MXFDescriptorHelper::IsSupported(file_descriptor, alternative_ec_label))
-        helper = new RDD36MXFDescriptorHelper();
+        helper = std::make_unique<RDD36MXFDescriptorHelper>();
     else if (JPEG2000MXFDescriptorHelper::IsSupported(file_descriptor, alternative_ec_label))
-        helper = new JPEG2000MXFDescriptorHelper();
+        helper = std::make_unique<JPEG2000MXFDescriptorHelper>();
     else if (VC2MXFDescriptorHelper::IsSupported(file_descriptor, alternative_ec_label))
-        helper = new VC2MXFDescriptorHelper();
+        helper = std::make_unique<VC2MXFDescriptorHelper>();
     else if (VC3MXFDescriptorHelper::IsSupported(file_descriptor, alternative_ec_label))
-        helper = new VC3MXFDescriptorHelper();
+        helper = std::make_unique<VC3MXFDescriptorHelper>();
     else if (MJPEGMXFDescriptorHelper::IsSupported(file_descriptor, alternative_ec_label))
-        helper = new MJPEGMXFDescriptorHelper();
+        helper = std::make_unique<MJPEGMXFDescriptorHelper>();
     else
-        helper = new PictureMXFDescriptorHelper();
+        helper = std::make_unique<PictureMXFDescriptorHelper>();
 
     helper->Initialize(file_descriptor, mxf_version, alternative_ec_label);
 
@@ -160,37 +161,37 @@ bool PictureMXFDescriptorHelper::IsSupported(EssenceType essence_type)
            MJPEGMXFDescriptorHelper::IsSupported(essence_type);
 }
 
-MXFDescriptorHelper* PictureMXFDescriptorHelper::Create(EssenceType essence_type)
+std::unique_ptr<MXFDescriptorHelper> PictureMXFDescriptorHelper::Create(EssenceType essence_type)
 {
     BMX_ASSERT(IsSupported(essence_type));
 
-    PictureMXFDescriptorHelper *helper;
+    std::unique_ptr<PictureMXFDescriptorHelper> helper;
     if (D10MXFDescriptorHelper::IsSupported(essence_type))
-        helper = new D10MXFDescriptorHelper();
+        helper = std::make_unique<D10MXFDescriptorHelper>();
     else if (DVMXFDescriptorHelper::IsSupported(essence_type))
-        helper = new DVMXFDescriptorHelper();
+        helper = std::make_unique<DVMXFDescriptorHelper>();
     else if (AVCIMXFDescriptorHelper::IsSupported(essence_type))
-        helper = new AVCIMXFDescriptorHelper();
+        helper = std::make_unique<AVCIMXFDescriptorHelper>();
     else if (AVCMXFDescriptorHelper::IsSupported(essence_type))
-        helper = new AVCMXFDescriptorHelper();
+        helper = std::make_unique<AVCMXFDescriptorHelper>();
     else if (UncCDCIMXFDescriptorHelper::IsSupported(essence_type))
-        helper = new UncCDCIMXFDescriptorHelper();
+        helper = std::make_unique<UncCDCIMXFDescriptorHelper>();
     else if (UncRGBAMXFDescriptorHelper::IsSupported(essence_type))
-        helper = new UncRGBAMXFDescriptorHelper();
+        helper = std::make_unique<UncRGBAMXFDescriptorHelper>();
     else if (MPEG2LGMXFDescriptorHelper::IsSupported(essence_type))
-        helper = new MPEG2LGMXFDescriptorHelper();
+        helper = std::make_unique<MPEG2LGMXFDescriptorHelper>();
     else if (RDD36MXFDescriptorHelper::IsSupported(essence_type))
-        helper = new RDD36MXFDescriptorHelper();
+        helper = std::make_unique<RDD36MXFDescriptorHelper>();
     else if (JPEG2000MXFDescriptorHelper::IsSupported(essence_type))
-        helper = new JPEG2000MXFDescriptorHelper();
+        helper = std::make_unique<JPEG2000MXFDescriptorHelper>();
     else if (VC2MXFDescriptorHelper::IsSupported(essence_type))
-        helper = new VC2MXFDescriptorHelper();
+        helper = std::make_unique<VC2MXFDescriptorHelper>();
     else if (VC3MXFDescriptorHelper::IsSupported(essence_type))
-        helper = new VC3MXFDescriptorHelper();
+        helper = std::make_unique<VC3MXFDescriptorHelper>();
     else if (MJPEGMXFDescriptorHelper::IsSupported(essence_type))
-        helper = new MJPEGMXFDescriptorHelper();
+        helper = std::make_unique<MJPEGMXFDescriptorHelper>();
     else
-        helper = new PictureMXFDescriptorHelper();
+        helper = std::make_unique<PictureMXFDescriptorHelper>();
 
     helper->SetEssenceType(essence_type);
 

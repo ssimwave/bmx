@@ -53,7 +53,7 @@ OP1ARDD36Track::OP1ARDD36Track(OP1AFile *file, uint32_t track_index, uint32_t tr
                                mxfRational frame_rate, EssenceType essence_type)
 : OP1APictureTrack(file, track_index, track_id, track_type_number, frame_rate, essence_type)
 {
-    mRDD36DescriptorHelper = dynamic_cast<RDD36MXFDescriptorHelper*>(mDescriptorHelper);
+    mRDD36DescriptorHelper = dynamic_cast<RDD36MXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mRDD36DescriptorHelper);
 
     mRDD36DescriptorHelper->SetComponentDepth(10);

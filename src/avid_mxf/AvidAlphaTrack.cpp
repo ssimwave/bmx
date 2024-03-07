@@ -50,7 +50,7 @@ using namespace mxfpp;
 AvidAlphaTrack::AvidAlphaTrack(AvidClip *clip, uint32_t track_index, EssenceType essence_type, File *file)
 : AvidPictureTrack(clip, track_index, essence_type, file)
 {
-    mRGBADescriptorHelper = dynamic_cast<UncRGBAMXFDescriptorHelper*>(mDescriptorHelper);
+    mRGBADescriptorHelper = dynamic_cast<UncRGBAMXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mRGBADescriptorHelper);
 
     mEssenceElementKey = MXF_EE_K(AvidUncRGBA);

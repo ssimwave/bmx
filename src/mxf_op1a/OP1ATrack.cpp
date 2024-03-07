@@ -313,7 +313,6 @@ OP1ATrack::OP1ATrack(OP1AFile *file, uint32_t track_index, uint32_t track_id, ui
 
 OP1ATrack::~OP1ATrack()
 {
-    delete mDescriptorHelper;
 }
 
 void OP1ATrack::SetOutputTrackNumber(uint32_t track_number)

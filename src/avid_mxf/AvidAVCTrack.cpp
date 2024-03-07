@@ -57,7 +57,7 @@ AvidAVCTrack::AvidAVCTrack(AvidClip *clip, uint32_t track_index, EssenceType ess
 {
     mTrackNumber = MXF_MPEG_PICT_TRACK_NUM(0x01, MXF_MPEG_PICT_CLIP_WRAPPED_EE_TYPE, 0x01);
     mEssenceElementKey = VIDEO_ELEMENT_KEY;
-    mWriterHelper.SetDescriptorHelper(dynamic_cast<AVCMXFDescriptorHelper*>(mDescriptorHelper));
+    mWriterHelper.SetDescriptorHelper(dynamic_cast<AVCMXFDescriptorHelper*>(GetMXFDescriptorHelper()));
 
     log_warn("AVC support is work-in-progress\n");
 }

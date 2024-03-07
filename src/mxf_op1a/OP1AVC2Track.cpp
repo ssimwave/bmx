@@ -52,12 +52,12 @@ OP1AVC2Track::OP1AVC2Track(OP1AFile *file, uint32_t track_index, uint32_t track_
                            mxfRational frame_rate)
 : OP1APictureTrack(file, track_index, track_id, track_type_number, frame_rate, VC2)
 {
-    mVC2DescriptorHelper = dynamic_cast<VC2MXFDescriptorHelper*>(mDescriptorHelper);
+    mVC2DescriptorHelper = dynamic_cast<VC2MXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mVC2DescriptorHelper);
 
     mTrackNumber = MXF_VC2_TRACK_NUM(0x01, MXF_VC2_FRAME_WRAPPED_EE_TYPE, 0x00);
     mEssenceElementKey = VIDEO_ELEMENT_KEY;
-    mWriterHelper.SetDescriptorHelper(dynamic_cast<VC2MXFDescriptorHelper*>(mDescriptorHelper));
+    mWriterHelper.SetDescriptorHelper(dynamic_cast<VC2MXFDescriptorHelper*>(GetMXFDescriptorHelper()));
 
     SetModeFlags(VC2_PICTURE_ONLY | VC2_COMPLETE_SEQUENCES);
 }

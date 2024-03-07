@@ -121,7 +121,6 @@ D10Track::D10Track(D10File *file, uint32_t track_index, mxfRational frame_rate, 
 
 D10Track::~D10Track()
 {
-    delete mDescriptorHelper;
 }
 
 void D10Track::SetOutputTrackNumber(uint32_t track_number)

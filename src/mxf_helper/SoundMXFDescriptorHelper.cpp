@@ -90,14 +90,15 @@ EssenceType SoundMXFDescriptorHelper::IsSupported(FileDescriptor *file_descripto
     return SOUND_ESSENCE;
 }
 
-SoundMXFDescriptorHelper* SoundMXFDescriptorHelper::Create(FileDescriptor *file_descriptor, uint16_t mxf_version,
-                                                           mxfUL alternative_ec_label)
+std::unique_ptr<SoundMXFDescriptorHelper> SoundMXFDescriptorHelper::Create(FileDescriptor *file_descriptor,
+                                                                           uint16_t mxf_version,
+                                                                           mxfUL alternative_ec_label)
 {
-    SoundMXFDescriptorHelper *helper;
+    std::unique_ptr<SoundMXFDescriptorHelper> helper;
     if (WaveMXFDescriptorHelper::IsSupported(file_descriptor, alternative_ec_label))
-        helper = new WaveMXFDescriptorHelper();
+        helper = std::make_unique<WaveMXFDescriptorHelper>();
     else
-        helper = new SoundMXFDescriptorHelper();
+        helper = std::make_unique<SoundMXFDescriptorHelper>();
 
     helper->Initialize(file_descriptor, mxf_version, alternative_ec_label);
 
@@ -115,15 +116,15 @@ bool SoundMXFDescriptorHelper::IsSupported(EssenceType essence_type)
     return WaveMXFDescriptorHelper::IsSupported(essence_type);
 }
 
-MXFDescriptorHelper* SoundMXFDescriptorHelper::Create(EssenceType essence_type)
+std::unique_ptr<MXFDescriptorHelper> SoundMXFDescriptorHelper::Create(EssenceType essence_type)
 {
     BMX_ASSERT(IsSupported(essence_type));
 
-    SoundMXFDescriptorHelper *helper;
+    std::unique_ptr<SoundMXFDescriptorHelper> helper;
     if (WaveMXFDescriptorHelper::IsSupported(essence_type))
-        helper = new WaveMXFDescriptorHelper();
+        helper = std::make_unique<WaveMXFDescriptorHelper>();
     else
-        helper = new SoundMXFDescriptorHelper();
+        helper = std::make_unique<SoundMXFDescriptorHelper>();
     helper->SetEssenceType(essence_type);
 
     return helper;

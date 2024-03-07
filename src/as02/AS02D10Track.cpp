@@ -52,7 +52,7 @@ AS02D10Track::AS02D10Track(AS02Clip *clip, uint32_t track_index, EssenceType ess
                            string rel_uri)
 : AS02PictureTrack(clip, track_index, essence_type, file, rel_uri)
 {
-    mD10DescriptorHelper = dynamic_cast<D10MXFDescriptorHelper*>(mDescriptorHelper);
+    mD10DescriptorHelper = dynamic_cast<D10MXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mD10DescriptorHelper);
 
     mWriterHelper.SetOutputMaxSampleSize(true);

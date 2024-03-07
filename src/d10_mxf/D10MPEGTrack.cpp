@@ -47,7 +47,7 @@ using namespace mxfpp;
 D10MPEGTrack::D10MPEGTrack(D10File *file, uint32_t track_index, mxfRational frame_rate, EssenceType essence_type)
 : D10Track(file, track_index, frame_rate, essence_type)
 {
-    mD10DescriptorHelper = dynamic_cast<D10MXFDescriptorHelper*>(mDescriptorHelper);
+    mD10DescriptorHelper = dynamic_cast<D10MXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mD10DescriptorHelper);
 
     mWriterHelper.SetOutputMaxSampleSize(true);

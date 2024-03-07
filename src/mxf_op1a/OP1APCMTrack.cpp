@@ -63,7 +63,7 @@ OP1APCMTrack::OP1APCMTrack(OP1AFile *file, uint32_t track_index, uint32_t track_
 
     BMX_ASSERT(essence_type == WAVE_PCM);
 
-    mWaveDescriptorHelper = dynamic_cast<WaveMXFDescriptorHelper*>(mDescriptorHelper);
+    mWaveDescriptorHelper = dynamic_cast<WaveMXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mWaveDescriptorHelper);
 
     mWaveDescriptorHelper->SetSamplingRate(SAMPLING_RATE_48K);

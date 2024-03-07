@@ -47,7 +47,7 @@ RDD9DataTrack::RDD9DataTrack(RDD9File *file, uint32_t track_index, uint32_t trac
                              mxfRational frame_rate, EssenceType essence_type)
 : RDD9Track(file, track_index, track_id, track_type_number, frame_rate, essence_type)
 {
-    mDataDescriptorHelper = dynamic_cast<DataMXFDescriptorHelper*>(mDescriptorHelper);
+    mDataDescriptorHelper = dynamic_cast<DataMXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mDataDescriptorHelper);
 
     mPosition = 0;

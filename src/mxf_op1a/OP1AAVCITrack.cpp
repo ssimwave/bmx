@@ -52,7 +52,7 @@ OP1AAVCITrack::OP1AAVCITrack(OP1AFile *file, uint32_t track_index, uint32_t trac
                              mxfRational frame_rate, EssenceType essence_type)
 : OP1APictureTrack(file, track_index, track_id, track_type_number, frame_rate, essence_type)
 {
-    mAVCIDescriptorHelper = dynamic_cast<AVCIMXFDescriptorHelper*>(mDescriptorHelper);
+    mAVCIDescriptorHelper = dynamic_cast<AVCIMXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mAVCIDescriptorHelper);
     mWriterHelper.SetDescriptorHelper(mAVCIDescriptorHelper);
 

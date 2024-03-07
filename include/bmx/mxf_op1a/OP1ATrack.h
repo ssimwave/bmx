@@ -32,6 +32,8 @@
 #ifndef BMX_OP1A_TRACK_H_
 #define BMX_OP1A_TRACK_H_
 
+#include <memory>
+
 #include <libMXF++/MXF.h>
 
 #include <bmx/mxf_helper/MXFDescriptorHelper.h>
@@ -65,7 +67,7 @@ public:
     void SetLowerLevelSourcePackage(mxfpp::SourcePackage *package, uint32_t track_id, std::string uri);
     void SetLowerLevelSourcePackage(mxfUMID package_uid, uint32_t track_id);
 
-    MXFDescriptorHelper* GetMXFDescriptorHelper() { return mDescriptorHelper; }
+    MXFDescriptorHelper* GetMXFDescriptorHelper() { return mDescriptorHelper.get(); }
 
 public:
     void WriteSamples(const unsigned char *data, uint32_t size, uint32_t num_samples);
@@ -117,7 +119,7 @@ protected:
     uint8_t mTrackTypeNumber;
 
     EssenceType mEssenceType;
-    MXFDescriptorHelper *mDescriptorHelper;
+    std::unique_ptr<MXFDescriptorHelper> mDescriptorHelper;
 
 private:
     bool mHaveLowerLevelSourcePackage;

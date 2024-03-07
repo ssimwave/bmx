@@ -32,6 +32,7 @@
 #ifndef BMX_DATA_MXF_DESCRIPTOR_HELPER_H_
 #define BMX_DATA_MXF_DESCRIPTOR_HELPER_H_
 
+#include <memory>
 
 #include <bmx/mxf_helper/MXFDescriptorHelper.h>
 
@@ -45,11 +46,11 @@ class DataMXFDescriptorHelper : public MXFDescriptorHelper
 {
 public:
     static EssenceType IsSupported(mxfpp::FileDescriptor *file_descriptor, mxfUL alternative_ec_label);
-    static DataMXFDescriptorHelper* Create(mxfpp::FileDescriptor *file_descriptor, uint16_t mxf_version,
-                                           mxfUL alternative_ec_label);
+    static std::unique_ptr<DataMXFDescriptorHelper> Create(mxfpp::FileDescriptor *file_descriptor, uint16_t mxf_version,
+                                                           mxfUL alternative_ec_label);
 
     static bool IsSupported(EssenceType essence_type);
-    static MXFDescriptorHelper* Create(EssenceType essence_type);
+    static std::unique_ptr<MXFDescriptorHelper> Create(EssenceType essence_type);
 
 public:
     DataMXFDescriptorHelper();

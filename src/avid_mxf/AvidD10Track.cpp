@@ -50,7 +50,7 @@ static const mxfKey VIDEO_ELEMENT_KEY = MXF_D10_PICTURE_EE_K(0x01);
 AvidD10Track::AvidD10Track(AvidClip *clip, uint32_t track_index, EssenceType essence_type, File *file)
 : AvidPictureTrack(clip, track_index, essence_type, file)
 {
-    mD10DescriptorHelper = dynamic_cast<D10MXFDescriptorHelper*>(mDescriptorHelper);
+    mD10DescriptorHelper = dynamic_cast<D10MXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mD10DescriptorHelper);
 
     mWriterHelper.SetOutputMaxSampleSize(true);

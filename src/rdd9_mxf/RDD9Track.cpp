@@ -164,7 +164,6 @@ RDD9Track::RDD9Track(RDD9File *file, uint32_t track_index, uint32_t track_id, ui
 
 RDD9Track::~RDD9Track()
 {
-    delete mDescriptorHelper;
 }
 
 void RDD9Track::SetOutputTrackNumber(uint32_t track_number)

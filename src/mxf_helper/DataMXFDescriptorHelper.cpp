@@ -65,18 +65,19 @@ EssenceType DataMXFDescriptorHelper::IsSupported(mxfpp::FileDescriptor *file_des
     return DATA_ESSENCE;
 }
 
-DataMXFDescriptorHelper* DataMXFDescriptorHelper::Create(mxfpp::FileDescriptor *file_descriptor, uint16_t mxf_version,
-                                                         mxfUL alternative_ec_label)
+std::unique_ptr<DataMXFDescriptorHelper> DataMXFDescriptorHelper::Create(mxfpp::FileDescriptor *file_descriptor,
+                                                                         uint16_t mxf_version,
+                                                                         mxfUL alternative_ec_label)
 {
-    DataMXFDescriptorHelper *helper;
+    std::unique_ptr<DataMXFDescriptorHelper> helper;
     if (ANCDataMXFDescriptorHelper::IsSupported(file_descriptor, alternative_ec_label))
-        helper = new ANCDataMXFDescriptorHelper();
+        helper = std::make_unique<ANCDataMXFDescriptorHelper>();
     else if (VBIDataMXFDescriptorHelper::IsSupported(file_descriptor, alternative_ec_label))
-        helper = new VBIDataMXFDescriptorHelper();
+        helper = std::make_unique<VBIDataMXFDescriptorHelper>();
     else if (TimedTextMXFDescriptorHelper::IsSupported(file_descriptor, alternative_ec_label))
-        helper = new TimedTextMXFDescriptorHelper();
+        helper = std::make_unique<TimedTextMXFDescriptorHelper>();
     else
-        helper = new DataMXFDescriptorHelper();
+        helper = std::make_unique<DataMXFDescriptorHelper>();
 
     helper->Initialize(file_descriptor, mxf_version, alternative_ec_label);
 
@@ -90,17 +91,17 @@ bool DataMXFDescriptorHelper::IsSupported(EssenceType essence_type)
            TimedTextMXFDescriptorHelper::IsSupported(essence_type);
 }
 
-MXFDescriptorHelper* DataMXFDescriptorHelper::Create(EssenceType essence_type)
+std::unique_ptr<MXFDescriptorHelper> DataMXFDescriptorHelper::Create(EssenceType essence_type)
 {
     BMX_ASSERT(IsSupported(essence_type));
 
-    DataMXFDescriptorHelper *helper;
+    std::unique_ptr<DataMXFDescriptorHelper> helper;
     if (ANCDataMXFDescriptorHelper::IsSupported(essence_type))
-        helper = new ANCDataMXFDescriptorHelper();
+        helper = std::make_unique<ANCDataMXFDescriptorHelper>();
     else if (VBIDataMXFDescriptorHelper::IsSupported(essence_type))
-        helper = new VBIDataMXFDescriptorHelper();
+        helper = std::make_unique<VBIDataMXFDescriptorHelper>();
     else
-        helper = new TimedTextMXFDescriptorHelper();
+        helper = std::make_unique<TimedTextMXFDescriptorHelper>();
 
     helper->SetEssenceType(essence_type);
 

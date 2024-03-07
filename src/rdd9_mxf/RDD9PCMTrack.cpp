@@ -55,7 +55,7 @@ RDD9PCMTrack::RDD9PCMTrack(RDD9File *file, uint32_t track_index, uint32_t track_
 {
     BMX_ASSERT(essence_type == WAVE_PCM);
 
-    mWaveDescriptorHelper = dynamic_cast<WaveMXFDescriptorHelper*>(mDescriptorHelper);
+    mWaveDescriptorHelper = dynamic_cast<WaveMXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mWaveDescriptorHelper);
 
     if (!(file->mFlavour & RDD9_SMPTE_377_2004_FLAVOUR))

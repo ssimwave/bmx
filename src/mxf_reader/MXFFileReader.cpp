@@ -1928,12 +1928,12 @@ void MXFFileReader::ProcessPictureDescriptor(FileDescriptor *file_descriptor, MX
         dynamic_cast<GenericPictureEssenceDescriptor*>(file_descriptor);
     BMX_CHECK(picture_descriptor);
 
-    PictureMXFDescriptorHelper *picture_helper =
+    std::unique_ptr<PictureMXFDescriptorHelper> picture_helper =
         PictureMXFDescriptorHelper::Create(file_descriptor, mMXFVersion, picture_track_info->essence_container_label);
     int32_t avid_resolution_id = 0;
     if (picture_helper->HaveAvidResolutionID())
         avid_resolution_id = picture_helper->GetAvidResolutionID();
-    delete picture_helper;
+    picture_helper.reset();
 
     if (picture_descriptor->havePictureEssenceCoding())
         picture_track_info->picture_essence_coding_label = picture_descriptor->getPictureEssenceCoding();

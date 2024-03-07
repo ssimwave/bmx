@@ -51,7 +51,7 @@ AS02DVTrack::AS02DVTrack(AS02Clip *clip, uint32_t track_index, EssenceType essen
                          string rel_uri)
 : AS02PictureTrack(clip, track_index, essence_type, file, rel_uri)
 {
-    mDVDescriptorHelper = dynamic_cast<DVMXFDescriptorHelper*>(mDescriptorHelper);
+    mDVDescriptorHelper = dynamic_cast<DVMXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mDVDescriptorHelper);
 
     mDVDescriptorHelper->SetComponentDepth(8);

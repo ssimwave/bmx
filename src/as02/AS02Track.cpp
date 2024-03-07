@@ -243,7 +243,6 @@ AS02Track::AS02Track(AS02Clip *clip, uint32_t track_index, EssenceType essence_t
 
 AS02Track::~AS02Track()
 {
-    delete mDescriptorHelper;
     delete mMXFFile;
     delete mDataModel;
     delete mHeaderMetadata;

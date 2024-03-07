@@ -314,7 +314,6 @@ AvidTrack::AvidTrack(AvidClip *clip, uint32_t track_index, EssenceType essence_t
 
 AvidTrack::~AvidTrack()
 {
-    delete mDescriptorHelper;
     delete mMXFFile;
     delete mDataModel;
     delete mHeaderMetadata;

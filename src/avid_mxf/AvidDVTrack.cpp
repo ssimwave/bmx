@@ -50,7 +50,7 @@ static const mxfKey VIDEO_ELEMENT_KEY = MXF_DV_EE_K(0x01, MXF_DV_CLIP_WRAPPED_EE
 AvidDVTrack::AvidDVTrack(AvidClip *clip, uint32_t track_index, EssenceType essence_type, File *file)
 : AvidPictureTrack(clip, track_index, essence_type, file)
 {
-    mDVDescriptorHelper = dynamic_cast<DVMXFDescriptorHelper*>(mDescriptorHelper);
+    mDVDescriptorHelper = dynamic_cast<DVMXFDescriptorHelper*>(GetMXFDescriptorHelper());
     BMX_ASSERT(mDVDescriptorHelper);
 
     mDVDescriptorHelper->SetComponentDepth(8);

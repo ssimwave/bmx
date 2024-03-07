@@ -32,6 +32,7 @@
 #ifndef BMX_RDD9_TRACK_H_
 #define BMX_RDD9_TRACK_H_
 
+#include <memory>
 
 #include <libMXF++/MXF.h>
 
@@ -63,7 +64,7 @@ public:
 
     void SetOutputTrackNumber(uint32_t track_number);
 
-    MXFDescriptorHelper* GetMXFDescriptorHelper() { return mDescriptorHelper; }
+    MXFDescriptorHelper* GetMXFDescriptorHelper() { return mDescriptorHelper.get(); }
 
 public:
     void WriteSamples(const unsigned char *data, uint32_t size, uint32_t num_samples);
@@ -114,7 +115,7 @@ protected:
     uint8_t mTrackTypeNumber;
 
     EssenceType mEssenceType;
-    MXFDescriptorHelper *mDescriptorHelper;
+    std::unique_ptr<MXFDescriptorHelper> mDescriptorHelper;
 };
 
 
